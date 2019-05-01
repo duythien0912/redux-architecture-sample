@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
       store: appStore,
+      /// Lately should use [StoreConnector] instead to gain better performance
       child: StoreBuilder<AppState>(
         builder: (context, store) {
           return MaterialApp(
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
 
               return supportedLocales.first;
             },
-            home: MyHomePage(store: store),
+            home: MyHomePage(),
           );
         },
       ),
@@ -46,10 +47,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({this.store});
-
-  final Store<AppState> store;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,9 +62,14 @@ class MyHomePage extends StatelessWidget {
               ListTile(
                 title: Text("Dark Theme"),
                 trailing: Switch(
-                  value: store.state.isEnableDarkTheme,
+                  value: StoreProvider.of<AppState>(context)
+                      .state
+                      .isEnableDarkTheme,
                   onChanged: (isChanged) {
-                    store.dispatch(isChanged == true ? TurnOnDarkThemeAction(): TurnOffDarkThemeAction());
+                    StoreProvider.of<AppState>(context).dispatch(
+                        isChanged == true
+                            ? TurnOnDarkThemeAction()
+                            : TurnOffDarkThemeAction());
                   },
                 ),
               )
