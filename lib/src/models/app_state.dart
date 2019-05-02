@@ -10,7 +10,8 @@ class AppState extends Equatable {
   final isEnableDarkTheme;
 
 //  AppState({@required this.isLoading, this.theme});
-  AppState({this.theme, this.isEnableDarkTheme});
+  AppState({this.theme, this.isEnableDarkTheme})
+      : super([theme, isEnableDarkTheme]);
 
 //  factory AppState.loading() =>
 //      AppState(isLoading: true, theme: AppTheme.basicTheme);
