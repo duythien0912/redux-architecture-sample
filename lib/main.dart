@@ -35,7 +35,6 @@ class MyApp extends StatelessWidget {
                   return supportedLocale;
                 }
               }
-
               return supportedLocales.first;
             },
             home: MyHomePage(),
