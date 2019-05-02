@@ -28,6 +28,13 @@ dependencies:
   redux_epics: ^0.10.4
   equatable: ^0.2.3
 
+  todos_app_core:
+    path: todos_app_core
+  todos_repository_core:
+    path: todos_repository_core
+  todos_repository_simple:
+    path: todos_repository_simple
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -37,7 +44,7 @@ flutter:
 
   uses-material-design: true
 
-    # To add assets to your application, add an assets section, like this:
+  # To add assets to your application, add an assets section, like this:
   assets:
     - lib/src/locale/lang/en.json
     - lib/src/locale/lang/vi.json
