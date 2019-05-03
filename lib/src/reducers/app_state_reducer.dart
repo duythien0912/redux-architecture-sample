@@ -1,7 +1,5 @@
 import 'package:redux_architecture_sample/src/models/app_state.dart';
-import 'package:redux_architecture_sample/src/reducers/enable_dark_theme_reducer.dart';
-import 'package:redux_architecture_sample/src/reducers/loading_reducer.dart';
-import 'package:redux_architecture_sample/src/reducers/theme_reducer.dart';
+import 'package:redux_architecture_sample/src/reducers/reducers.dart';
 
 AppState appReducer(AppState state, dynamic action) {
   return AppState(

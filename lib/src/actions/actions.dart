@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:redux_architecture_sample/src/models/models.dart';
 
-class TodosLoadedAction {}
+class LoadTodosAction {}
+
+class TodosLoadedAction {
+  final List<Todo> todos;
+
+  TodosLoadedAction({this.todos});
+
+  @override
+  String toString() {
+    return 'TodosLoadedAction{todos: $todos}';
+  }
+}
 
 class TodosNotLoadedAction {}
+
+class AddTodoAction {
+  final Todo todo;
+
+  AddTodoAction(this.todo);
+
+  @override
+  String toString() {
+    return 'AddTodoAction{todo: $todo}';
+  }
+}
 
 class ChangeAppTheme {
   final ThemeData themeData;
@@ -17,4 +40,4 @@ class ChangeAppTheme {
 
 class TurnOnDarkThemeAction {}
 
-class TurnOffDarkThemeAction{}
+class TurnOffDarkThemeAction {}
