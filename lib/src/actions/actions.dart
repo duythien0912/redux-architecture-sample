@@ -27,6 +27,17 @@ class AddTodoAction {
   }
 }
 
+class UpdateTabAction{
+  final AppTab newTab;
+
+  UpdateTabAction(this.newTab);
+
+  @override
+  String toString() {
+    return 'UpdateTabAction{newTab: $newTab}';
+  }
+}
+
 class ChangeAppTheme {
   final ThemeData themeData;
 
