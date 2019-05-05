@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux_architecture_sample/src/actions/actions.dart';
 import 'package:redux_architecture_sample/src/containers/active_tab.dart';
 import 'package:redux_architecture_sample/src/containers/containers.dart';
-import 'package:redux_architecture_sample/src/locale/locale_export.dart';
 import 'package:redux_architecture_sample/src/models/models.dart';
 
 class TodosPage extends StatefulWidget {
@@ -19,6 +17,9 @@ class _TodosPageState extends State<TodosPage> {
     return ActiveTab(
       onInit: (store) {
         store.dispatch(LoadTodosAction());
+      },
+      onDispose: (store){
+        store.dispatch(CancelItemDataEventAction());
       },
       builder: (BuildContext context, AppTab activeTab) {
         return Scaffold(

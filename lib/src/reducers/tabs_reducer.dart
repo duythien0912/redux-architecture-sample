@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_architecture_sample/src/actions/actions.dart';
 import 'package:redux_architecture_sample/src/models/models.dart';

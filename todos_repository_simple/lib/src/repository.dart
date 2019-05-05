@@ -21,18 +21,43 @@ class TodosRepositoryFlutter implements TodosRepository {
     this.webClient = const WebClient(),
   });
 
+  ///Create fake list data [TodoEntity] to test [Epic Middleware]
+
   /// Loads todos first from File storage. If they don't exist or encounter an
   /// error, it attempts to load the Todos from a Web Client.
   @override
   Future<List<TodoEntity>> loadTodos() async {
     try {
-      return await fileStorage.loadTodos();
+//      return await fileStorage.loadTodos();
+      return [
+        TodoEntity(
+            "Buy food for da kitty", "1", "With the chickeny bits!", false),
+        TodoEntity(
+            "Buy food for da kitty", "2", "With the chickeny bits!", false),
+        TodoEntity(
+            "Buy food for da kitty", "3", "With the chickeny bits!", false),
+        TodoEntity(
+            "Buy food for da kitty", "3", "With the chickeny bits!", false),
+        TodoEntity(
+            "Buy food for da kitty", "4", "With the chickeny bits!", false),
+      ];
     } catch (e) {
-      final todos = await webClient.fetchTodos();
+//      final todos = await webClient.fetchTodos();
 
-      fileStorage.saveTodos(todos);
-
-      return todos;
+//      fileStorage.saveTodos(todos);
+//      return todos;
+      return [
+        TodoEntity(
+            "Buy food for da kitty", "1", "With the chickeny bits!", false),
+        TodoEntity(
+            "Buy food for da kitty", "2", "With the chickeny bits!", false),
+        TodoEntity(
+            "Buy food for da kitty", "3", "With the chickeny bits!", false),
+        TodoEntity(
+            "Buy food for da kitty", "3", "With the chickeny bits!", false),
+        TodoEntity(
+            "Buy food for da kitty", "4", "With the chickeny bits!", false),
+      ];
     }
   }
 

@@ -12,7 +12,11 @@ class TodoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppLoading(
       builder: (context, isLoading) {
-        return isLoading ? CircularProgressIndicator() : _buildListView();
+        return isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : _buildListView();
       },
     );
   }
