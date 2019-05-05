@@ -20,7 +20,8 @@ TodosRepository todosRepository = const TodosRepositoryFlutter(
 List<Middleware<AppState>> createMiddleWares() {
   return [
     EpicMiddleware(_epic),
-    LoggingMiddleware.printer()];
+    LoggingMiddleware.printer()
+  ];
 }
 
 final _epic = combineEpics<AppState>([
@@ -29,19 +30,22 @@ final _epic = combineEpics<AppState>([
   TypedEpic<AppState, AddTodoAction>(_createSaveTodos)
 ]);
 
-Stream<dynamic> _createLoadTodos(
-    Stream<dynamic> actions, EpicStore<AppState> store) {
-  return actions.asyncMap((_) => Observable.fromFuture(
-      todosRepository
+Stream<dynamic> _createLoadTodos(Stream<dynamic> actions, EpicStore<AppState> store) {
+  return actions.asyncMap((_) =>
+      Observable
+          .fromFuture(todosRepository
           .loadTodos()
-          .then((result) =>
-              TodosLoadedAction(todos: result.map(Todo.fromEntity).toList()))
-          .catchError((error) => TodosNotLoadedAction())));
+          .then((result) => TodosLoadedAction(todos: result.map(Todo.fromEntity).toList()))
+          .catchError((error) => TodosNotLoadedAction()))
+          .takeUntil(actions.where((action) => action is CancelItemDataEventAction))
+  );
 }
 
-Stream<dynamic> _createSaveTodos(
-    Stream<dynamic> actions, EpicStore<AppState> store) {
-  return actions.asyncMap((_) => Observable.fromFuture(
-      todosRepository.saveTodos(
-          todosSelector(store.state).map((todo) => todo.toEntity()).toList())));
+Stream<dynamic> _createSaveTodos(Stream<dynamic> actions, EpicStore<AppState> store) {
+  return actions.asyncMap((_) =>
+      Observable
+          .fromFuture(todosRepository
+          .saveTodos(todosSelector(store.state).map((todo) => todo.toEntity()).toList()))
+          .takeUntil(actions.where((action) => action is CancelItemDataEventAction))
+  );
 }

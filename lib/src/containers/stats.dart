@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class Stats extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
+    return Center(
+      child: Text("Stats Page"),
+    );
   }
 }

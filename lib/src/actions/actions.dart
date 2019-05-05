@@ -52,3 +52,5 @@ class ChangeAppTheme {
 class TurnOnDarkThemeAction {}
 
 class TurnOffDarkThemeAction {}
+
+class CancelItemDataEventAction {}

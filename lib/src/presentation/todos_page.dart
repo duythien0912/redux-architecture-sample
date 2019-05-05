@@ -18,7 +18,7 @@ class _TodosPageState extends State<TodosPage> {
   Widget build(BuildContext context) {
     return ActiveTab(
       onInit: (store) {
-//        store.dispatch(LoadTodosAction());
+        store.dispatch(LoadTodosAction());
       },
       builder: (BuildContext context, AppTab activeTab) {
         return Scaffold(
@@ -26,7 +26,7 @@ class _TodosPageState extends State<TodosPage> {
             title: Text("TODOS"),
             actions: <Widget>[],
           ),
-//          body: activeTab == AppTab.todos ? FilteredTodos() : Stats(),
+          body: activeTab == AppTab.todos ? FilteredTodos() : Stats(),
           floatingActionButton: FloatingActionButton(
             onPressed: null,
             child: Icon(Icons.add),
