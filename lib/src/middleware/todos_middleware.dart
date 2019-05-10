@@ -27,7 +27,7 @@ final _epic = combineEpics<AppState>([
 ]);
 
 Stream<dynamic> _createLoadTodos(
-    Stream<LoadTodosAction> actions, EpicStore<AppState> store) {
+    Stream<dynamic> actions, EpicStore<AppState> store) {
   return Observable.fromFuture(todosRepository
           .loadTodos()
           .then((result) =>

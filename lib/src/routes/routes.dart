@@ -1,4 +1,4 @@
-class ArchRoutes{
-  static const todosPage ="/";
-  static const addTodo ="/addTodo";
+class ArchRoutes {
+  static const todosPage = "/";
+  static const addTodo = "/addTodo";
 }
