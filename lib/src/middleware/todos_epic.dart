@@ -10,8 +10,9 @@ class TodosEpic {
 
   TodosEpic(this.todosRepository);
 
-  Epic<AppState> epics() => combineEpics<AppState>(
-      [TypedEpic<AppState, LoadTodosAction>(_createLoadTodos)]);
+  Epic<AppState> epics() => combineEpics<AppState>([
+    TypedEpic<AppState, LoadTodosAction>(_createLoadTodos)
+  ]);
 
   Stream<dynamic> _createLoadTodos(
       Stream<LoadTodosAction> action, EpicStore<AppState> store) {
