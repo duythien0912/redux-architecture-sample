@@ -29,6 +29,7 @@ class TodosRepositoryFlutter implements TodosRepository {
   Future<List<TodoEntity>> loadTodos() async {
     try {
 //      return await fileStorage.loadTodos();
+      Future.delayed(Duration(seconds: 2));
       return [
         TodoEntity(
             "Buy food for da kitty", "1", "With the chickeny bits!", false),
@@ -46,6 +47,7 @@ class TodosRepositoryFlutter implements TodosRepository {
 
 //      fileStorage.saveTodos(todos);
 //      return todos;
+      Future.delayed(Duration(seconds: 2));
       return [
         TodoEntity(
             "Buy food for da kitty", "1", "With the chickeny bits!", false),
