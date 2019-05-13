@@ -11,15 +11,14 @@ class TodosEpic {
   TodosEpic(this.todosRepository);
 
   Epic<AppState> epics() => combineEpics<AppState>([
-    TypedEpic<AppState, LoadTodosAction>(_createLoadTodos)
+    TypedEpic<AppState, LoadTodosAction>(createLoadTodos)
   ]);
 
-  Stream<dynamic> _createLoadTodos(
+  Stream<dynamic> createLoadTodos(
       Stream<LoadTodosAction> action, EpicStore<AppState> store) {
     return Observable.fromFuture(todosRepository
         .loadTodos()
-        .then((result) =>
-            TodosLoadedAction(todos: result.map(Todo.fromEntity).toList()))
+        .then((result) => TodosLoadedAction(todos: result.map(Todo.fromEntity).toList()))
         .catchError((error) => TodosNotLoadedAction()));
   }
 }
