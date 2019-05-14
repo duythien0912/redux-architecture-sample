@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:redux_architecture_sample/src/presentation/presentation.dart';
+import 'package:redux_architecture_sample/src/view/views.dart';
 import 'package:redux_architecture_sample/src/routes/routes.dart';
 
 class RouteGenerator {

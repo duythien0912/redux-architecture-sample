@@ -1,9 +1,9 @@
 import 'middleware_test.dart' as middleware;
 import 'reducer_test.dart' as reducer;
-import 'widget_test.dart' as widget;
+import './widgets/app_loading_test.dart' as appLoading;
 
 main() {
   reducer.main();
   middleware.main();
-  widget.main();
+//  appLoading.main();
 }

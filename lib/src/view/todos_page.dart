@@ -22,7 +22,7 @@ class _TodosPageState extends State<TodosPage> {
             title: Text("TODOS"),
             actions: <Widget>[],
           ),
-          body: activeTab == AppTab.todos ? FilteredTodos() : Stats(),
+          body: activeTab == AppTab.todos ? FilteredTodos(key: Key("FilteredTodos"),) : Stats(),
           floatingActionButton: FloatingActionButton(
             onPressed: null,
             child: Icon(Icons.add),

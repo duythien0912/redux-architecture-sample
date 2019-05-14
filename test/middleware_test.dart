@@ -17,7 +17,7 @@ main() {
   group("createLoadTodos Epic", () {
     test(
         "dispatches the TodosLoadedAction action when LoadTodosAction is called and return Todo list",
-        () async {
+        () {
       final repository = MockTodosRepository();
       final store = Store<AppState>(
         appReducer,
@@ -29,9 +29,16 @@ main() {
       final Stream<LoadTodosAction> action = BehaviorSubject();
 
       final todosEpic = TodosEpic(repository);
-      todosEpic.createLoadTodos(action, epicStore).listen((actual) {
-        expect(actual, TodosLoadedAction());// actual action
-      });
+
+      final todos = [
+        TodoEntity("Moin", "1", "Note", false),
+      ];
+
+      when(repository.loadTodos()).thenAnswer((_) => Future.value(todos));
+
+      todosEpic
+          .createLoadTodos(action, epicStore)
+          .listen((actual) => expect(actual, TodosLoadedAction(todos: todos.map(Todo.fromEntity).toList())));
     });
   });
 }

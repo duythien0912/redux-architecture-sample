@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:redux_architecture_sample/src/containers/app_loading.dart';
 import 'package:redux_architecture_sample/src/models/models.dart';
-import 'package:redux_architecture_sample/src/presentation/presentation.dart';
+import 'package:redux_architecture_sample/src/view/views.dart';
 
 class TodoList extends StatelessWidget {
   final List<Todo> todos;
@@ -11,9 +11,12 @@ class TodoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppLoading(
+      key: Key("AppLoading"),
       builder: (context, isLoading) {
         return isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? Center(
+          key: Key("LoadingIndicator"),
+            child: CircularProgressIndicator())
             : _buildListView();
       },
     );

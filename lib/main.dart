@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_architecture_sample/src/models/models.dart';
-import 'package:redux_architecture_sample/src/presentation/home_page.dart';
+import 'package:redux_architecture_sample/src/view/home_page.dart';
 import 'package:redux_architecture_sample/src/reducers/reducers.dart';
 import 'package:todos_repository_simple/todos_repository_simple.dart';
 import 'package:todos_repository_core/todos_repository_core.dart';
