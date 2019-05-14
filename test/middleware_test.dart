@@ -27,11 +27,11 @@ main() {
 
       final epicStore = EpicStore(store);
       final Stream<LoadTodosAction> action = BehaviorSubject();
-      final Stream<TodosLoadedAction> matcher = BehaviorSubject();
 
       final todosEpic = TodosEpic(repository);
-      final actual = todosEpic.createLoadTodos(action, epicStore);
-      await expectLater(actual, emits(matcher));
+      todosEpic.createLoadTodos(action, epicStore).listen((actual) {
+        expect(actual, TodosLoadedAction());// actual action
+      });
     });
   });
 }

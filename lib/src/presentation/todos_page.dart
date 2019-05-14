@@ -15,12 +15,7 @@ class _TodosPageState extends State<TodosPage> {
   @override
   Widget build(BuildContext context) {
     return ActiveTab(
-      onInit: (store) {
-        store.dispatch(LoadTodosAction());
-      },
-      onDispose: (store){
-        store.dispatch(CancelItemDataEventAction());
-      },
+      onInit: (store) => store.dispatch(LoadTodosAction()),
       builder: (BuildContext context, AppTab activeTab) {
         return Scaffold(
           appBar: AppBar(

@@ -4,6 +4,7 @@ import 'package:rxdart/rxdart.dart';
 import 'dart:async';
 import 'package:redux_architecture_sample/src/actions/actions.dart';
 import 'package:todos_repository_core/todos_repository_core.dart';
+import 'package:meta/meta.dart';
 
 class TodosEpic {
   TodosRepository todosRepository;
@@ -14,6 +15,7 @@ class TodosEpic {
     TypedEpic<AppState, LoadTodosAction>(createLoadTodos)
   ]);
 
+  @visibleForTesting
   Stream<dynamic> createLoadTodos(
       Stream<LoadTodosAction> action, EpicStore<AppState> store) {
     return Observable.fromFuture(todosRepository
