@@ -26,7 +26,7 @@ main() {
       );
 
       final epicStore = EpicStore(store);
-      final Stream<LoadTodosAction> action = BehaviorSubject();
+      final Stream<LoadTodosAction> action = PublishSubject();
 
       final todosEpic = TodosEpic(repository);
 

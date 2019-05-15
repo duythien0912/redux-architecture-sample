@@ -9,13 +9,14 @@ import 'package:redux_architecture_sample/src/middleware/middlewares.dart';
 import 'package:redux_architecture_sample/src/models/models.dart';
 import 'package:redux_architecture_sample/src/reducers/reducers.dart';
 import 'package:redux_architecture_sample/src/selectors/selectors.dart';
+import 'package:redux_architecture_sample/src/view/views.dart';
 import 'package:todos_repository_core/src/todo_entity.dart';
 import 'package:todos_repository_core/src/todos_repository.dart';
 
 class MockTodosRepository extends Mock implements TodosRepository {}
 
 main() {
-  group("App Loading test", () {
+  group("TodoList test", () {
     Widget makeTestableWidget({Widget child, Store<AppState> store}) {
       return StoreProvider<AppState>(
         store: store,
@@ -29,28 +30,35 @@ main() {
         initialState: AppState.loading(),
         middleware: createMiddleWares(mockRepo));
 
-    final todos = [
+    final todosEntity = [
       TodoEntity("Moin", "1", "Note", false),
     ];
 
-    when(mockRepo.loadTodos()).thenAnswer((_) => Future.value(todos));
+    when(mockRepo.loadTodos()).thenAnswer((_) => Future.value(todosEntity));
 
     appStore.dispatch(LoadTodosAction());
 
-    testWidgets("should show loading indicator when dispatch LoadTodosAction",
+    final todos = [
+      Todo.fromEntity(TodoEntity("Moin", "1", "Note", false)),
+    ];
+
+    testWidgets("Don't show loading indicator when dispatch LoadTodosAction",
         (WidgetTester tester) async {
       await tester.pumpWidget(makeTestableWidget(
           store: appStore,
           child: StoreConnector(
-            converter: (Store<AppState> store) =>
-                isLoadingSelector(store.state),
+            converter: (Store<AppState> store) => true,
             builder: (BuildContext context, bool isLoading) {
-              return AppLoading();
+              return MaterialApp(
+                home: Scaffold(
+                  body: TodoList(todos: todos),
+                ),
+              );
             },
           )));
 
-      await tester.pump();
-      expect(find.byKey(Key("LoadingIndicator")), findsOneWidget);
+      await tester.pumpAndSettle(Duration(milliseconds: 500));
+      expect(find.byKey(Key("LoadingIndicator")), findsNothing);
     });
   });
 }
