@@ -22,12 +22,12 @@ class _TodosPageState extends State<TodosPage> {
             title: Text("TODOS"),
             actions: <Widget>[],
           ),
-          body: activeTab == AppTab.todos ? FilteredTodos(key: Key("FilteredTodos"),) : Stats(),
+          body: activeTab == AppTab.todos ? FilteredTodos(key: Key("FilteredTodos"),) : Stats(key: Key("Stats"),),
           floatingActionButton: FloatingActionButton(
             onPressed: null,
             child: Icon(Icons.add),
           ),
-          bottomNavigationBar: TabSelector(),
+          bottomNavigationBar: TabSelector(key: Key("TabSelector")),
         );
       },
     );
