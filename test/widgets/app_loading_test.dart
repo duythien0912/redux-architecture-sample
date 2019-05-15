@@ -46,15 +46,10 @@ main() {
         (WidgetTester tester) async {
       await tester.pumpWidget(makeTestableWidget(
           store: appStore,
-          child: StoreConnector(
-            converter: (Store<AppState> store) => true,
-            builder: (BuildContext context, bool isLoading) {
-              return MaterialApp(
-                home: Scaffold(
-                  body: TodoList(todos: todos),
-                ),
-              );
-            },
+          child: MaterialApp(
+            home: Scaffold(
+              body: TodoList(todos: todos),
+            ),
           )));
 
       await tester.pumpAndSettle(Duration(milliseconds: 500));
