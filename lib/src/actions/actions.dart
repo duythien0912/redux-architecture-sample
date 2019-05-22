@@ -1,12 +1,13 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:redux_architecture_sample/src/models/models.dart';
 
 class LoadTodosAction {}
 
-class TodosLoadedAction {
+class TodosLoadedAction extends Equatable {
   final List<Todo> todos;
 
-  TodosLoadedAction({this.todos});
+  TodosLoadedAction({this.todos}) : super([todos]);
 
   @override
   String toString() {
@@ -27,7 +28,7 @@ class AddTodoAction {
   }
 }
 
-class UpdateTabAction{
+class UpdateTabAction {
   final AppTab newTab;
 
   UpdateTabAction(this.newTab);
